@@ -5,16 +5,37 @@
       <router-link class="nav-link" to="/contents/unregistered">Contents</router-link>
       <router-link class="nav-link" to="/contents/registered">Registered Contents</router-link>
     </nav>
-    <div class="info">
+    <div class="info" v-if="!accessToken">
       <a class="button--green" href="/auth/login">Login</a>
       <a class="button--grey" href="/auth/register">Register</a>
+    </div>
+    <div class="info" v-else>
+      <button class="button--green" type="button" @click="logout">Logout</button>
     </div>
     <nuxt/>
   </div>
 </template>
 
 <script>
+let AuthModule = require('~~/modules/auth');
+
 export default {
+  data() {
+    return {
+    }
+  },
+  computed: {
+    accessToken: function () {
+      if (process.browser) {
+        return window.localStorage.getItem('connectyAccessToken');
+      }
+    }
+  },
+  methods: {
+    logout: function () {
+      AuthModule.logout();
+    }
+  }
 }
 </script>
 

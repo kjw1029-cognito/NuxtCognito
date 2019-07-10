@@ -12,15 +12,7 @@
 
 
 <script>
-var AmazonCognitoIdentity = require('amazon-cognito-identity-js');
-var CognitoUserPool = AmazonCognitoIdentity.CognitoUserPool;
-
-var poolData = {
-  UserPoolId: 'ap-northeast-1_D4umOTqkF',
-  ClientId: 'qptidu7uorni4ftn7l6tp1722',
-};
-var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-
+let AuthModule = require('~~/modules/auth');
 export default {
   data()  {
     return {
@@ -32,21 +24,7 @@ export default {
   },
   methods: {
     register: function () {
-      var attributeList = [];
-      var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute({
-        Name: 'email',
-        Value: this.formData.email,
-      });
-      attributeList.push(attributeEmail);
-
-      userPool.signUp(this.formData.email, this.formData.password, attributeList, null, function (err, result) {
-        if (err) {
-          alert(err.message || JSON.stringify(err));
-          return;
-        }
-        var cognitoUser = result.user;
-        if (confirm('user name is ' + cognitoUser.getUsername())) window.location.href = '/auth/registerverify?email='+cognitoUser.getUsername();
-      })
+      AuthModule.register(this.formData.email, this.formData.password, '/auth/registerverify');
     }
   }
 }

@@ -20,8 +20,12 @@ module.exports = {
   /*
   ** Build configuration
   */
+  modules: [
+    '~~/modules/auth'
+  ],
   build: {
     vendor: [
+      'vuex',
       'axios',
       'aws-amplify',
       'aws-amplify-vue',
@@ -42,6 +46,6 @@ module.exports = {
         })
       }
     }
-  }
+  },
 }
 

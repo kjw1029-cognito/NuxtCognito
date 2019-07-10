@@ -5,9 +5,12 @@
 </template>
 
 <script>
-  /*
   export default {
-    middleware: 'amplify-auth.js'
+    middleware: 'authenticated',
+    data() {
+      return {
+
+      }
+    }
   }
-  */
 </script>
