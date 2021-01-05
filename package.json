@@ -19,7 +19,7 @@
     "aws-amplify": "^1.1.29",
     "aws-amplify-vue": "^0.2.12",
     "aws-sdk": "^2.488.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "nuxt": "^2.0.0",
     "query-string": "^6.8.1"
   },
